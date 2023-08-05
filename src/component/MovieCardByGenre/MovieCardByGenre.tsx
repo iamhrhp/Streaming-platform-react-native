@@ -1,7 +1,7 @@
 import React, {FC, Fragment, useEffect, useState} from 'react';
 import {Text, View, Image, StyleSheet} from 'react-native';
 import {moviesGenreId} from '../../Data/MoviesGenreId';
-import {baseURL} from '../../api';
+import {API_KEY, baseURL} from '../../api';
 import axios from 'axios';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import Config from 'react-native-config';
@@ -51,19 +51,12 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
 
   const getMovieData = async () => {
     try {
-      //   const res = await axios(
-      //     `${baseURL}/3/discover/${tv ? 'tv' : 'movie'}?api_key=${
-      //       process.env.REACT_APP_API_KEY
-      //     }&language=en-US&sort_by=popularity.desc&page=1&include_video=true&with_genres=${
-      //       tv ? tvId : movieId
-      //     }`,
-      //   );
-      // const apiUrl = Config;
-      // console.log('-apiUrl---', apiUrl);
-      console.log('-apiUrl---', process.env);
-
       const res = await axios(
-        'https://api.themoviedb.org/3/movie/popular?api_key=fb38a9bfa54456b6cd58c11a1b8ae101&language=en-US&page=1',
+        `${baseURL}/3/discover/${
+          tv ? 'tv' : 'movie'
+        }?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&include_video=true&with_genres=${
+          tv ? tvId : movieId
+        }`,
       );
       const resJson = await res.data;
       setCurrData(resJson.results);
