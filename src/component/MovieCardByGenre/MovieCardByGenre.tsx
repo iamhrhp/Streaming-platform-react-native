@@ -1,10 +1,15 @@
 import React, {FC, Fragment, useEffect, useState} from 'react';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import {Text, View, Image, StyleSheet, Pressable} from 'react-native';
 import {moviesGenreId} from '../../Data/MoviesGenreId';
 import {API_KEY, baseURL} from '../../api';
 import axios from 'axios';
 import SwiperFlatList from 'react-native-swiper-flatlist';
-import Config from 'react-native-config';
+import {
+  useNavigation,
+  NavigationProp,
+  ParamListBase,
+} from '@react-navigation/native';
+
 interface IProps {
   Genre?: string;
   tv?: boolean;
@@ -65,6 +70,23 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
       console.log('e', e);
     }
   };
+  const {navigate}: NavigationProp<ParamListBase> = useNavigation<any>();
+  const navigateToViewAllPage = () => {
+    // if (tvSeries.length <= 0 && tv === true) {
+    //   dispatch(ADD_TV(currData));
+    // } else if (movies.length <= 0 && !tv) {
+    //   dispatch(ADD_MOVIES(currData));
+    // }
+    // if (tv === true) {
+    //   dispatch(ADD_TV(currData));
+    // } else if (!tv) {
+    //   dispatch(ADD_MOVIES(currData));
+    // }
+    navigate('ViewListPage', {Genre, tv});
+    // navigate('ViewListPage');
+  };
+
+  // console.log('--props-', props);
 
   useEffect(() => {
     getMovieData();
@@ -72,6 +94,11 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
 
   return (
     <View style={{marginLeft: 10}}>
+      <Pressable onPress={navigateToViewAllPage}>
+        <View>
+          <Text style={styles.title}>{Genre} Movies</Text>
+        </View>
+      </Pressable>
       <SwiperFlatList
         data={currData}
         renderItem={({item}) => (
@@ -99,26 +126,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 
-  itemContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 300,
-    height: 200,
-    backgroundColor: 'white',
-    borderRadius: 8,
-    marginHorizontal: 10,
-    elevation: 5,
-  },
-  image: {
-    width: '100%',
-    height: '70%',
-    resizeMode: 'cover',
-    borderRadius: 8,
-  },
   title: {
     fontSize: 16,
     fontWeight: 'bold',
     marginTop: 10,
+    marginBottom: 10,
+    color: '#ffffff',
   },
 });
 

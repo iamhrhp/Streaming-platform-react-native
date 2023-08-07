@@ -7,6 +7,8 @@ const HomePage = ({setIsDarkTheme}: any) => {
   return (
     <View style={styles.mainView}>
       <MovieCardByGenre Genre="Action" tv={false} />
+      <MovieCardByGenre Genre="Comedy" tv={false} />
+      <MovieCardByGenre Genre="Horror" tv={false} />
     </View>
   );
 };
