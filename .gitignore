@@ -34,9 +34,9 @@ local.properties
 *.keystore
 !debug.keystore
 
-# api keys
-.env  
-
+# api keys 
+src/
+api.tsx
 # node.js
 #
 node_modules/
