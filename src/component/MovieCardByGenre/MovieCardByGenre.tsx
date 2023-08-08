@@ -4,6 +4,7 @@ import {moviesGenreId} from '../../Data/MoviesGenreId';
 import {API_KEY, baseURL} from '../../api';
 import axios from 'axios';
 import SwiperFlatList from 'react-native-swiper-flatlist';
+
 import {
   useNavigation,
   NavigationProp,
@@ -93,7 +94,7 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
   }, []);
 
   return (
-    <View style={{marginLeft: 10}}>
+    <View style={styles.mainWrapper}>
       <Pressable onPress={navigateToViewAllPage}>
         <View>
           <Text style={styles.title}>{Genre} Movies</Text>
@@ -119,6 +120,10 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
 };
 
 const styles = StyleSheet.create({
+  mainWrapper: {
+    marginLeft: 10,
+    marginBottom: 10,
+  },
   logo: {
     width: 120,
     height: 180,
