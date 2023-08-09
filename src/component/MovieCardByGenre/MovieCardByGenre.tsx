@@ -4,12 +4,14 @@ import {moviesGenreId} from '../../Data/MoviesGenreId';
 import {API_KEY, baseURL} from '../../api';
 import axios from 'axios';
 import SwiperFlatList from 'react-native-swiper-flatlist';
+import {useDispatch} from 'react-redux/es/exports';
 
 import {
   useNavigation,
   NavigationProp,
   ParamListBase,
 } from '@react-navigation/native';
+import {ADD_MOVIES, ADD_TV} from '../../Utils/redux/reducer/reducer';
 
 interface IProps {
   Genre?: string;
@@ -19,6 +21,7 @@ interface IProps {
 const MovieCardByGenre: FC<IProps> = (props: IProps) => {
   const [currData, setCurrData] = useState<any[]>([]);
   const {Genre, tv} = props;
+  const dispatch = useDispatch();
 
   // const getMovieData = async () => {
   const movieId = moviesGenreId
@@ -83,8 +86,12 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
     // } else if (!tv) {
     //   dispatch(ADD_MOVIES(currData));
     // }
+    if (tv === true) {
+      dispatch(ADD_TV(currData));
+    } else if (!tv) {
+      dispatch(ADD_MOVIES(currData));
+    }
     navigate('ViewListPage', {Genre, tv});
-    // navigate('ViewListPage');
   };
 
   // console.log('--props-', props);
