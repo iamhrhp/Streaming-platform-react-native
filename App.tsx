@@ -26,6 +26,8 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import RoutesPage from './src/component/RoutesPage/RoutesPage';
+import {Provider} from 'react-redux';
+import {store} from './src/Utils/redux/store/store';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -33,9 +35,11 @@ type SectionProps = PropsWithChildren<{
 
 function App({isDarkMode}: any): JSX.Element {
   return (
-    <NavigationContainer>
-      <RoutesPage isDarkMode={isDarkMode} />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <RoutesPage isDarkMode={isDarkMode} />
+      </NavigationContainer>
+    </Provider>
   );
 }
 
