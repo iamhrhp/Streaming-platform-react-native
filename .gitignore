@@ -35,7 +35,6 @@ local.properties
 !debug.keystore
 
 # api keys 
-src/
 api.tsx
 # node.js
 #
