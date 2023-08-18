@@ -35,8 +35,8 @@ local.properties
 !debug.keystore
 
 # api keys 
-src/
 api.tsx
+.budle
 # node.js
 #
 node_modules/
