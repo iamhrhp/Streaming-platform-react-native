@@ -36,9 +36,7 @@ type SectionProps = PropsWithChildren<{
 function App({isDarkMode}: any): JSX.Element {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <RoutesPage isDarkMode={isDarkMode} />
-      </NavigationContainer>
+      <RoutesPage />
     </Provider>
   );
 }
