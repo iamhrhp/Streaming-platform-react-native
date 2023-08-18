@@ -36,6 +36,7 @@ local.properties
 
 # api keys 
 api.tsx
+.budle
 # node.js
 #
 node_modules/
