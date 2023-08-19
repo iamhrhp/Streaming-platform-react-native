@@ -1,5 +1,12 @@
 import React, {FC, Fragment, useEffect, useState} from 'react';
-import {Text, View, Image, StyleSheet, Pressable} from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 import {moviesGenreId} from '../../Data/MoviesGenreId';
 import {API_KEY, baseURL} from '../../api';
 import axios from 'axios';
@@ -110,15 +117,20 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
       <SwiperFlatList
         data={currData}
         renderItem={({item}) => (
-          <View>
-            <Image
-              style={styles.logo}
-              alt="img"
-              source={{
-                uri: `http://image.tmdb.org/t/p/w500/${item.poster_path}`,
-              }}
-            />
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              navigate('Movie-Details');
+            }}>
+            <View>
+              <Image
+                style={styles.logo}
+                alt="img"
+                source={{
+                  uri: `http://image.tmdb.org/t/p/w500/${item.poster_path}`,
+                }}
+              />
+            </View>
+          </TouchableOpacity>
         )}
         keyExtractor={item => item.id.toString()}
       />

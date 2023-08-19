@@ -17,6 +17,7 @@ import {
 } from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
+import BackHeaderTitle from '../common components/BackHeaderTitle/BackHeaderTitle';
 
 interface IProps {
   navigation?: any;
@@ -30,41 +31,17 @@ interface IProps {
 }
 
 const ViewListPage: FC<IProps> = (props: IProps) => {
-  const {navigate}: NavigationProp<ParamListBase> = useNavigation<any>();
   const {movies, tvSeries} = useSelector((state: any) => state.moviesSlice);
-  console.log('------props', props);
+  // console.log('------props', props);
   const currData = props.route?.params?.tv === true ? tvSeries : movies;
 
-  console.log('------check', props.route?.params?.Genre);
+  // console.log('------check', props.route?.params);
   const Genre = props.route?.params?.Genre;
   const Tv = props.route?.params?.tv;
 
-  const handleBack = () => {
-    navigate('Home');
-  };
-
-  // const Item = ({poster}: any) => (
-  //   <View>
-  //     <Image
-  //       style={styles.logo}
-  //       alt="img"
-  //       source={{
-  //         uri: `http://image.tmdb.org/t/p/w500/${item.poster_path}`,
-  //       }}
-  //     />
-  //   </View>
-  // );
-
   return (
     <View style={styles.mainWrapper}>
-      <View style={styles.headerWrapper}>
-        <TouchableOpacity style={styles.button} onPress={handleBack}>
-          <Icon name="arrow-back" size={20} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.title}>
-          {Genre} {Tv === true ? 'Shows' : 'Movies'}
-        </Text>
-      </View>
+      <BackHeaderTitle Genre={Genre} Tv={Tv} />
       <View>
         <SafeAreaView>
           <FlatList
