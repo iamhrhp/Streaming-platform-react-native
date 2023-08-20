@@ -19,6 +19,7 @@ import {
   ParamListBase,
 } from '@react-navigation/native';
 import {ADD_MOVIES, ADD_TV} from '../../Utils/redux/reducer/reducer';
+import {NavigateHook} from '../../helper/NavigateHook';
 
 interface IProps {
   Genre?: string;
@@ -29,6 +30,8 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
   const [currData, setCurrData] = useState<any[]>([]);
   const {Genre, tv} = props;
   const dispatch = useDispatch();
+
+  const {navigate}: NavigationProp<ParamListBase> = useNavigation<any>();
 
   // const getMovieData = async () => {
   const movieId = moviesGenreId
@@ -49,22 +52,6 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
         })
         .map(item => item.id);
 
-  //   try {
-  //     const res = await axios(
-  //       `${baseURL}/3/discover/${tv ? 'tv' : 'movie'}?api_key=${
-  //         process.env.REACT_APP_API_KEY
-  //       }&language=en-US&sort_by=popularity.desc&page=1&include_video=true&with_genres=${
-  //         tv ? tvId : movieId
-  //       }`,
-  //     );
-  //     const resJson = await res.data;
-  //     setCurrData(resJson.results);
-  //     // console.log('resJson', resJson.results);
-  //   } catch (e) {
-  //     console.log('e', e);
-  //   }
-  // };
-
   const getMovieData = async () => {
     try {
       const res = await axios(
@@ -81,24 +68,14 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
       console.log('e', e);
     }
   };
-  const {navigate}: NavigationProp<ParamListBase> = useNavigation<any>();
+
   const navigateToViewAllPage = () => {
-    // if (tvSeries.length <= 0 && tv === true) {
-    //   dispatch(ADD_TV(currData));
-    // } else if (movies.length <= 0 && !tv) {
-    //   dispatch(ADD_MOVIES(currData));
-    // }
-    // if (tv === true) {
-    //   dispatch(ADD_TV(currData));
-    // } else if (!tv) {
-    //   dispatch(ADD_MOVIES(currData));
-    // }
     if (tv === true) {
       dispatch(ADD_TV(currData));
     } else if (!tv) {
       dispatch(ADD_MOVIES(currData));
     }
-    navigate('ViewListPage', {Genre, tv});
+    NavigateHook('ViewListPage', {Genre, tv});
   };
 
   // console.log('--props-', props);
@@ -119,7 +96,7 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => {
-              navigate('Movie-Details');
+              navigate('Movie-Details', {movieId: item.id});
             }}>
             <View>
               <Image
