@@ -26,9 +26,7 @@ const DetailsPage: FC<IProps> = (props: IProps) => {
   const options = {
     headers: {
       accept: 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2YzQzNmE0YjdlMGFmMWZjNzMxMTAwYjQwNDQwMjYwNyIsInN1YiI6IjYwMWQ5MzQ4Yzg2YjNhMDAzZmY3YWMwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FtXiv9doDTqh1LQTA-1GdK7B9IXjEzRtKziJFJYapJY',
-    },
+     },
   };
 
   const handleMovieDetails = async () => {
