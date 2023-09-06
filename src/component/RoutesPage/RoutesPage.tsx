@@ -9,6 +9,7 @@ import Ionicon from 'react-native-vector-icons/Ionicons';
 import FIcon from 'react-native-vector-icons/FontAwesome';
 
 import ProfilePage from '../HomePage/ProfilePage/ProfilePage';
+import DetailsPage from '../common components/DetailsPage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,7 +19,7 @@ const StackNavigator = () => {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="HomePage" component={HomePage} />
       <Stack.Screen name="ViewListPage" component={ViewListPage} />
-      {/* <Stack.Screen name="Search" component={SearchPage} /> */}
+      <Stack.Screen name="Movie-Details" component={DetailsPage} />
     </Stack.Navigator>
   );
 };

@@ -1,18 +1,9 @@
 import {FC, useEffect, useState} from 'react';
-import {
-  Text,
-  TextInput,
-  View,
-  FlatList,
-  Image,
-  ScrollView,
-  StyleSheet,
-} from 'react-native';
-import MIcon from 'react-native-vector-icons/MaterialIcons';
-
+import {Text, TextInput, View, FlatList, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {API_KEY, baseURL} from '../../../api';
 import axios from 'axios';
+import FlatListSearchPage from '../../common components/FlatListSearchPage/FlatListSearchPage';
 
 interface IProps {}
 
@@ -50,30 +41,26 @@ const SearchPage: FC<IProps> = (props: IProps) => {
     getMovieData();
   }, []);
 
-  const FlatListComponent = (data: any) => {
-    const mapData = data.data.item;
-    // console.log(data);
-    return (
-      <View style={styles.flatListContainer}>
-        <Image
-          style={styles.flatListImage}
-          alt="img"
-          // resizeMode="cover"
-          source={{
-            uri: `http://image.tmdb.org/t/p/w500/${mapData.backdrop_path}`,
-          }}
-        />
-        <Text style={styles.flatListTitle}>{mapData.title}</Text>
-        <MIcon
-          name="keyboard-arrow-right"
-          color="white"
-          style={styles.flatListarrowIcon}
-        />
-      </View>
-    );
-  };
-
-  // console.log('searchData', searchData.length === 0 ? searchData : 'none');
+  // const FlatListComponent = (data: any) => {
+  //   const mapData = data.data.item;
+  //   return (
+  //     <View style={styles.flatListContainer}>
+  //       <Image
+  //         style={styles.flatListImage}
+  //         alt="img"
+  //         source={{
+  //           uri: `http://image.tmdb.org/t/p/w500/${mapData.backdrop_path}`,
+  //         }}
+  //       />
+  //       <Text style={styles.flatListTitle}>{mapData.title}</Text>
+  //       <MIcon
+  //         name="keyboard-arrow-right"
+  //         color="white"
+  //         style={styles.flatListarrowIcon}
+  //       />
+  //     </View>
+  //   );
+  // };
 
   return (
     <View style={styles.mainWrapper}>
@@ -107,7 +94,7 @@ const SearchPage: FC<IProps> = (props: IProps) => {
       <View style={{marginTop: 10}}>
         <FlatList
           data={searchData.length === 0 ? movies : searchData}
-          renderItem={(item: any) => <FlatListComponent data={item} />}
+          renderItem={(item: any) => <FlatListSearchPage data={item} />}
           keyExtractor={item => item.id}
         />
       </View>

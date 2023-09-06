@@ -1,12 +1,10 @@
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import MovieCardByGenre from '../MovieCardByGenre/MovieCardByGenre';
 import MovieProductionsPage from '../MovieProduction/MovieProductionsPage';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native';
 import SliderPage from '../common components/SliderPage/SliderPage';
 
-const HomePage = ({setIsDarkTheme}: any) => {
-  console.log('---', setIsDarkTheme);
-
+const HomePage = () => {
   return (
     <ScrollView style={styles.mainView}>
       <SliderPage />
