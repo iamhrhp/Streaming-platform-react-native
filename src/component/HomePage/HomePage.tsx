@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import MovieCardByGenre from '../MovieCardByGenre/MovieCardByGenre';
 import MovieProductionsPage from '../MovieProduction/MovieProductionsPage';
-import {ScrollView} from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native';
 import SliderPage from '../common components/SliderPage/SliderPage';
 
 const HomePage = () => {

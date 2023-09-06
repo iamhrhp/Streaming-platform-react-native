@@ -1,5 +1,4 @@
 import {View, StyleSheet, Image, Text} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import {SliderData} from '../../../Data/SliderData';
 

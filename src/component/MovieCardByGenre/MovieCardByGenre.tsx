@@ -75,7 +75,7 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
     } else if (!tv) {
       dispatch(ADD_MOVIES(currData));
     }
-    NavigateHook('ViewListPage', {Genre, tv});
+    navigate('ViewListPage', {Genre, tv});
   };
 
   // console.log('--props-', props);

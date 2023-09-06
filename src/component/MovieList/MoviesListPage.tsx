@@ -5,11 +5,11 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import {FC} from 'react';
 import {useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {FlatList} from 'react-native-gesture-handler';
 import {
   NavigationProp,
   ParamListBase,
