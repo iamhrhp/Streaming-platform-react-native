@@ -9,10 +9,12 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 import MCIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-import WatchNowBtn from './Buttons/WatchNowBtn';
 import {useState, FC, useEffect, Fragment} from 'react';
 import {baseURL} from '../../api';
 import axios from 'axios';
+import CustomButton from './Buttons/CustomButton';
+import Ionicon from 'react-native-vector-icons/Ionicons';
+import {hs, ws} from '../../Theme/ResponsiveDesign';
 
 interface IProps {
   route: any;
@@ -95,7 +97,22 @@ const DetailsPage: FC<IProps> = (props: IProps) => {
                   {item.adult ? '18+' : 'U/A 16+'}
                 </Text>
               </View>
-              <WatchNowBtn />
+              <CustomButton
+                title="Watch Now"
+                buttonBackgroundColor="#ffffff"
+                textColor="black"
+                width={ws(340)}
+                icon={
+                  <Ionicon
+                    style={{
+                      marginHorizontal: 5,
+                    }}
+                    name="play"
+                    size={16}
+                    color="black"
+                  />
+                }
+              />
               <View style={{flexDirection: 'row', marginTop: 20}}>
                 {movieGenre.map((item: any) => {
                   return (

@@ -6,11 +6,11 @@ import {
   StyleSheet,
   Pressable,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import {moviesGenreId} from '../../Data/MoviesGenreId';
-import {API_KEY, baseURL} from '../../api';
+import {API_KEY, baseURL, imageConfig} from '../../api';
 import axios from 'axios';
-import SwiperFlatList from 'react-native-swiper-flatlist';
 import {useDispatch} from 'react-redux/es/exports';
 
 import {
@@ -20,6 +20,8 @@ import {
 } from '@react-navigation/native';
 import {ADD_MOVIES, ADD_TV} from '../../Utils/redux/reducer/reducer';
 import {NavigateHook} from '../../helper/NavigateHook';
+import FastImage from 'react-native-fast-image';
+import {hs, ms, ws} from '../../Theme/ResponsiveDesign';
 
 interface IProps {
   Genre?: string;
@@ -91,7 +93,8 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
           <Text style={styles.title}>{Genre} Movies</Text>
         </View>
       </Pressable>
-      <SwiperFlatList
+      <FlatList
+        horizontal={true}
         data={currData}
         renderItem={({item}) => (
           <TouchableOpacity
@@ -99,11 +102,10 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
               navigate('Movie-Details', {movieId: item.id});
             }}>
             <View>
-              <Image
+              <FastImage
                 style={styles.logo}
-                alt="img"
                 source={{
-                  uri: `http://image.tmdb.org/t/p/w500/${item.poster_path}`,
+                  uri: `${imageConfig}${item.poster_path}`,
                 }}
               />
             </View>
@@ -117,21 +119,20 @@ const MovieCardByGenre: FC<IProps> = (props: IProps) => {
 
 const styles = StyleSheet.create({
   mainWrapper: {
-    marginLeft: 10,
-    marginBottom: 10,
+    marginBottom: ms(10),
   },
   logo: {
-    width: 120,
-    height: 180,
-    margin: 2,
-    borderRadius: 8,
+    width: ws(108),
+    height: hs(180),
+    margin: ms(2),
+    borderRadius: ms(8),
   },
 
   title: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: ms(10),
+    marginBottom: ms(10),
     color: '#ffffff',
   },
 });

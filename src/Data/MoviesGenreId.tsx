@@ -88,3 +88,14 @@ export const tvGenreId = [
     title: 'Western',
   },
 ];
+
+export const languageId = [
+  {id: 'en', title: 'English'},
+  {id: 'ja', title: 'Japanese'},
+  {id: 'es', title: 'Spanish'},
+  {id: 'hi', title: 'Hindi'},
+  {id: 'ko', title: 'Korean'},
+  {id: 'de', title: 'Germany'},
+  {id: 'it', title: 'Italian'},
+  {id: 'fr', title: 'French'},
+];
