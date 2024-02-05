@@ -19,12 +19,13 @@ interface IProps {
   iconColor?: string;
   width?: number;
   height?: number;
+  customStyle?: any;
 }
 
 const CustomButton: FC<IProps> = (props: IProps) => {
   console;
   return (
-    <View style={styles.container}>
+    <View style={[props.customStyle, styles.container]}>
       <TouchableOpacity
         style={[
           styles.button,
@@ -53,7 +54,7 @@ const CustomButton: FC<IProps> = (props: IProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: hs(20),
+    marginVertical: hs(8),
     justifyContent: 'center',
     alignItems: 'center',
   },
