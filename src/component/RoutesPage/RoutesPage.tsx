@@ -7,9 +7,11 @@ import SearchPage from '../HomePage/SearchPage/SearchPage';
 import Icon from 'react-native-vector-icons/Foundation';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import FIcon from 'react-native-vector-icons/FontAwesome';
-
 import ProfilePage from '../HomePage/ProfilePage/ProfilePage';
 import DetailsPage from '../common components/DetailsPage';
+import FirstScreen from '../ScreenPages/FirstScreen';
+import SecondScreen from '../ScreenPages/SecondScreen';
+import ThirdScreen from '../ScreenPages/ThridScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();

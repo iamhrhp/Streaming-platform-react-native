@@ -1,16 +1,11 @@
 import {FC} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import FastImage from 'react-native-fast-image';
+import {ws} from '../../Theme/ResponsiveDesign';
 
 interface IProps {}
 
 const MovieProductionsPage: FC<IProps> = () => {
-  const imageWidth = wp('100%'); // 50% of the screen width
-  const imageHeight = hp('30%'); // 30% of the screen height
-
   return (
     <View style={styles.mainView}>
       <View
@@ -28,9 +23,8 @@ const MovieProductionsPage: FC<IProps> = () => {
             borderRadius: 6,
           }}>
           <Image
-            //   style={{width: imageWidth, height: imageHeight}}
-            style={{width: 80, marginLeft: 22}}
-            source={require('../../Images/disney.png')}
+            style={styles.prodImage}
+            source={require('../../../assets/Images/disney.png')}
             resizeMode="center"
           />
         </View>
@@ -44,10 +38,9 @@ const MovieProductionsPage: FC<IProps> = () => {
             borderRadius: 6,
           }}>
           <Image
-            //   style={{width: imageWidth, height: imageHeight}}
-            source={require('../../Images/pixar.png')}
+            source={require('../../../assets/Images/pixar.png')}
             resizeMode="center"
-            style={{width: 80, marginLeft: 22}}
+            style={styles.prodImage}
           />
         </View>
         <View
@@ -61,10 +54,9 @@ const MovieProductionsPage: FC<IProps> = () => {
             borderRadius: 6,
           }}>
           <Image
-            //   style={{width: imageWidth, height: imageHeight}}
-            source={require('../../Images/marvel.png')}
+            source={require('../../../assets/Images/marvel.png')}
             resizeMode="center"
-            style={{width: 80, marginLeft: 22}}
+            style={styles.prodImage}
           />
         </View>
       </View>
@@ -83,9 +75,8 @@ const MovieProductionsPage: FC<IProps> = () => {
             borderRadius: 6,
           }}>
           <Image
-            //   style={{width: imageWidth, height: imageHeight}}
-            style={{width: 80, marginLeft: 22}}
-            source={require('../../Images/starwars.png')}
+            style={styles.prodImage}
+            source={require('../../../assets/Images/starwars.png')}
             resizeMode="center"
           />
         </View>
@@ -99,10 +90,9 @@ const MovieProductionsPage: FC<IProps> = () => {
             borderRadius: 6,
           }}>
           <Image
-            //   style={{width: imageWidth, height: imageHeight}}
-            source={require('../../Images/natgeo.png')}
+            source={require('../../../assets/Images/natgeo.png')}
             resizeMode="center"
-            style={{width: 80, marginLeft: 22}}
+            style={styles.prodImage}
           />
         </View>
         <View
@@ -116,13 +106,9 @@ const MovieProductionsPage: FC<IProps> = () => {
             borderRadius: 6,
           }}>
           <Image
-            //   style={{width: imageWidth, height: imageHeight}}
-            source={require('../../Images/hotstar.png')}
+            source={require('../../../assets/Images/hotstar.png')}
             resizeMode="center"
-            style={{
-              width: 80,
-              marginLeft: 22,
-            }}
+            style={styles.prodImage}
           />
         </View>
       </View>
@@ -141,8 +127,8 @@ const styles = StyleSheet.create({
     // margin: 20,
   },
   prodImage: {
-    // width: imageWidth,
-    // height: imageHeight,
+    width: ws(80),
+    marginLeft: 20,
   },
 });
 
