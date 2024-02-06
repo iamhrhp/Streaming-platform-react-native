@@ -5,6 +5,7 @@ import {
   Text,
   Button,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import SwiperFlatList from 'react-native-swiper-flatlist';
 import FastImage from 'react-native-fast-image';
@@ -20,6 +21,7 @@ import {
 } from '../../../helper/filterId';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 import CustomButton from '../Buttons/CustomButton';
+import LinearGradient from 'react-native-linear-gradient';
 
 const SliderPage = () => {
   const [topRated, setTopRated] = useState<any[]>([]);
@@ -52,13 +54,23 @@ const SliderPage = () => {
         onChangeIndex={index => setCurrentIndex(index.index)}
         renderItem={({item}) => (
           <View>
-            <FastImage
-              style={styles.logo}
-              source={{
-                uri: `${imageConfig}${item.backdrop_path}`,
-              }}
-              resizeMode={FastImage.resizeMode.cover}
-            />
+            <View style={styles.shadowContainer}>
+              <FastImage
+                style={styles.sliderImage}
+                source={{
+                  uri: `${imageConfig}${item.backdrop_path}`,
+                }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+              <LinearGradient
+                colors={['rgba(0, 0, 0, 0.8)', 'rgba(0, 0, 0, 0)']}
+                style={styles.gradientTop}
+              />
+              <LinearGradient
+                colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 20)']}
+                style={styles.gradientBottom}
+              />
+            </View>
             <View style={styles.logoContainer}>
               <Image
                 style={styles.logoImage}
@@ -76,43 +88,39 @@ const SliderPage = () => {
                 {movieGenreFilter(item.genre_ids[0])}
               </Text>
             </View>
-            <View
-              style={[styles.slide, {backgroundColor: item.backgroundColor}]}>
-              <Text>{item.title}</Text>
+            <View style={styles.buttonContainer}>
+              <CustomButton
+                title="Watch Now"
+                width={ws(170)}
+                buttonBackgroundColor="#252833"
+                icon={
+                  <Ionicon
+                    style={styles.iconStyle}
+                    name="play"
+                    size={16}
+                    color="white"
+                  />
+                }
+              />
+              <CustomButton
+                title=""
+                width={ws(30)}
+                buttonBackgroundColor="#252833"
+                customStyle={{padding: 10}}
+                icon={
+                  <Ionicon
+                    style={styles.iconStyle}
+                    name="add"
+                    size={22}
+                    color="white"
+                  />
+                }
+              />
             </View>
           </View>
         )}
         keyExtractor={item => item.id.toString()}
       />
-      <View style={styles.buttonContainer}>
-        <CustomButton
-          title="Watch Now"
-          width={ws(170)}
-          buttonBackgroundColor="#252833"
-          icon={
-            <Ionicon
-              style={styles.iconStyle}
-              name="play"
-              size={16}
-              color="white"
-            />
-          }
-        />
-        <CustomButton
-          title=""
-          width={ws(30)}
-          buttonBackgroundColor="#252833"
-          customStyle={{padding: 10}}
-          icon={
-            <Ionicon
-              style={styles.iconStyle}
-              name="add"
-              size={22}
-              color="white"
-            />
-          }
-        />
-      </View>
       <View style={styles.paginationContainer}>
         {Array.from(Array(topRated.slice(0, 9).length), (e, i) => (
           <TouchableOpacity
@@ -129,7 +137,7 @@ const SliderPage = () => {
 };
 
 const styles = StyleSheet.create({
-  logo: {
+  sliderImage: {
     width: ws(360),
     height: hs(320),
   },
@@ -173,6 +181,26 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginHorizontal: 2,
     backgroundColor: '#999',
+  },
+  gradientTop: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: 80, // Set the height of the top shadow
+    borderRadius: 8,
+  },
+  gradientBottom: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: 100, // Set the height of the bottom shadow
+    borderRadius: 8,
+  },
+  shadowContainer: {
+    borderRadius: 8,
+    overflow: 'hidden',
   },
 });
 
