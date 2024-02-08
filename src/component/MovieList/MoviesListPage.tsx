@@ -18,6 +18,8 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import BackHeaderTitle from '../common components/BackHeaderTitle/BackHeaderTitle';
+import FastImage from 'react-native-fast-image';
+import {imageConfig} from '../../api';
 
 interface IProps {
   navigation?: any;
@@ -42,26 +44,21 @@ const ViewListPage: FC<IProps> = (props: IProps) => {
   return (
     <View style={styles.mainWrapper}>
       <BackHeaderTitle Genre={Genre} Tv={Tv} />
-      <View>
-        <SafeAreaView>
-          <FlatList
-            numColumns={3}
-            data={currData}
-            renderItem={({item}) => (
-              <View>
-                <Image
-                  style={styles.logo}
-                  alt="img"
-                  source={{
-                    uri: `http://image.tmdb.org/t/p/w500/${item.poster_path}`,
-                  }}
-                />
-              </View>
-            )}
-            keyExtractor={item => item.id}
-          />
-        </SafeAreaView>
-      </View>
+      <SafeAreaView>
+        <FlatList
+          numColumns={3}
+          data={currData}
+          renderItem={({item}) => (
+            <FastImage
+              style={styles.logo}
+              source={{
+                uri: `${imageConfig}${item.poster_path}`,
+              }}
+            />
+          )}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
     </View>
   );
 };
