@@ -3,6 +3,7 @@ import MovieCardByGenre from '../MovieCardByGenre/MovieCardByGenre';
 import MovieProductionsPage from '../MovieProduction/MovieProductionsPage';
 import {ScrollView} from 'react-native';
 import SliderPage from '../common components/SliderPage/SliderPage';
+import {ws} from '../../Theme/ResponsiveDesign';
 
 const HomePage = () => {
   return (

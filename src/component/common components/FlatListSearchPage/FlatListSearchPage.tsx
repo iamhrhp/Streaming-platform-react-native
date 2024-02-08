@@ -1,6 +1,7 @@
 import {Text, View, Image, StyleSheet} from 'react-native';
 import {FC} from 'react';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
+import {imageConfig} from '../../../api';
 
 // interface IProps {}
 
@@ -10,7 +11,7 @@ const FlatListSearchPage = (data: any) => (
       style={styles.flatListImage}
       alt="img"
       source={{
-        uri: `http://image.tmdb.org/t/p/w500/${data.data.item.backdrop_path}`,
+        uri: `${imageConfig}${data.data.item.backdrop_path}`,
       }}
     />
     <Text style={styles.flatListTitle}>{data.data.item.title}</Text>
